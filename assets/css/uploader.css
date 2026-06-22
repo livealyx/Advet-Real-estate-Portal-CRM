@@ -1,0 +1,335 @@
+/* 
+ * Advet Studio - Modern Image Uploader
+ * Redesigned to match a clean, standard look with premium animations.
+ * Theme-synchronized with Advet Studio Earthy Palette.
+ */
+
+.advet-uploader-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.advet-uploader-container.mini-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: inherit;
+}
+
+.upload-zone {
+    position: relative;
+    padding: 2.5rem 1.5rem;
+    background: #FDFCF9;
+    border: 2px dashed rgba(137, 145, 120, 0.3);
+    border-radius: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+}
+@media (max-width: 400px) {
+    .upload-zone { padding: 1.5rem; }
+}
+
+.upload-zone.mini {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+    padding: 0;
+    min-height: unset;
+    background: transparent;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-zone.mini:hover {
+    background: rgba(42, 41, 37, 0.4);
+}
+
+.upload-zone.mini .icon-stack,
+.upload-zone.mini .upload-text,
+.upload-zone.mini .upload-subtext {
+    display: none !important;
+}
+
+.upload-zone.mini.uploading {
+    background: rgba(42, 41, 37, 0.8) !important;
+    backdrop-filter: blur(2px);
+}
+
+.upload-zone.mini .progress-dots {
+    margin-bottom: 0.5rem;
+    gap: 4px;
+}
+
+.upload-zone.mini + .preview-grid {
+    display: none !important;
+}
+
+.upload-zone.mini .dot {
+    width: 3px;
+    height: 3px;
+}
+
+.upload-zone.mini .upload-hint {
+    color: white;
+    font-size: 0.5rem;
+}
+
+.upload-zone.drag-over {
+    border-color: #899178;
+    background: rgba(137, 145, 120, 0.08);
+    transform: scale(1.01);
+}
+
+/* Stacked Icon Design - Earthy Theme */
+.icon-stack {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+}
+
+.icon-bg, .icon-fg {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #A7B194, #899178);
+    box-shadow: 0 10px 20px rgba(137, 145, 120, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-bg {
+    top: 0;
+    left: 20px;
+    opacity: 0.4;
+    transform: rotate(-4deg);
+}
+
+.icon-fg {
+    bottom: 0;
+    right: 20px;
+    z-index: 2;
+    background: linear-gradient(135deg, #B2BAA3, #899178);
+}
+
+.icon-fg svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+.upload-text {
+    font-size: 1rem;
+    color: #2A2925;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.upload-text span {
+    color: #899178;
+    font-weight: 700;
+}
+
+.upload-subtext {
+    font-size: 0.7rem;
+    color: #6D685C;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    display: block;
+    opacity: 0.6;
+}
+
+/* Segmented Dots Progress - Theme Unified */
+.progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    height: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.progress-dots.active {
+    opacity: 1;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(137, 145, 120, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #899178;
+    box-shadow: 0 0 12px rgba(137, 145, 120, 0.4);
+    transform: scale(1.3);
+}
+
+.upload-hint {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #899178;
+    font-weight: 700;
+    opacity: 0;
+    height: 1rem;
+}
+
+.upload-hint.active {
+    opacity: 1;
+}
+
+/* Progress Popup Overlay */
+.uploader-progress-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 41, 37, 0.3);
+    backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.uploader-progress-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.uploader-progress-card {
+    background: #FDFCF9;
+    padding: 3rem;
+    border-radius: 2.5rem;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid rgba(137, 145, 120, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.uploader-progress-overlay.active .uploader-progress-card {
+    transform: scale(1) translateY(0);
+}
+
+.uploader-progress-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    color: #2A2925;
+    margin-bottom: 0.5rem;
+}
+
+.uploader-progress-card p {
+    font-size: 0.75rem;
+    color: #6D685C;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.uploader-progress-card .progress-dots {
+    opacity: 1;
+    height: 10px;
+    margin-bottom: 0;
+}
+
+.uploader-progress-card .dot {
+    width: 8px;
+    height: 8px;
+}
+
+/* Preview Grid Redesign */
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.preview-item {
+    aspect-ratio: 1;
+    border-radius: 1.25rem;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(137, 145, 120, 0.15);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    animation: previewAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    overflow: visible; /* To allow remove btn to pop out */
+}
+
+@keyframes previewAppear {
+    from { opacity: 0; transform: scale(0.8) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.preview-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.25rem;
+    background: linear-gradient(to bottom, transparent 60%, rgba(42, 41, 37, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-item:hover::before {
+    opacity: 1;
+}
+
+.remove-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 26px;
+    height: 26px;
+    background: #2A2925;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+}
+
+.preview-item:hover .remove-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.remove-btn:hover {
+    background: #899178;
+    transform: scale(1.1);
+}
