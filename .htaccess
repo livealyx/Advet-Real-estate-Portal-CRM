@@ -1,0 +1,32 @@
+# Advet - Complete SEO & Environment-Agnostic Routing
+Options +FollowSymLinks -Indexes -MultiViews
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 1. Skip real files and directories
+    RewriteCond %{REQUEST_FILENAME} -d [OR]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # 2. Hardcode mappings for structural folders
+    RewriteRule ^admin/([^/.]+)(?:\.php)?$ /advet/admin/$1.php [L,QSA]
+    RewriteRule ^auth/([^/.]+)(?:\.php)?$ /advet/auth/$1.php [L,QSA]
+    RewriteRule ^actions/([^/.]+)(?:\.php)?$ /advet/actions/$1.php [L,QSA]
+
+    # 3. SEO-Friendly Deep Links
+    RewriteRule ^projects/([^/]+)/?$ /advet/public/project-detail.php?slug=$1 [L,QSA,NC]
+    RewriteRule ^property/([^/]+)/?$ /advet/public/property-detail.php?slug=$1 [L,QSA,NC]
+    RewriteRule ^story/([^/]+)/?$ /advet/public/story-detail.php?slug=$1 [L,QSA,NC]
+    RewriteRule ^gallery/([^/]+)/?$ /advet/public/album-detail.php?slug=$1 [L,QSA,NC]
+
+    # 4. Standard Public Pages
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^/.]+)(?:\.php)?/?$ /advet/public/$1.php [L,QSA]
+
+    # 5. Error Handling
+    ErrorDocument 404 /advet/public/404.php
+    RewriteRule ^404/?$ /advet/public/404.php [L,QSA]
+
+</IfModule>

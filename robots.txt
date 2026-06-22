@@ -1,0 +1,106 @@
+User-Agent: *
+Allow: /
+
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: ChatGPT-User
+Allow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
+
+User-Agent: ClaudeBot
+Allow: /
+
+User-Agent: Claude-User
+Allow: /
+
+User-Agent: Claude-SearchBot
+Allow: /
+
+User-Agent: Googlebot
+Allow: /
+
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: GoogleOther
+Allow: /
+
+User-Agent: Google-CloudVertexBot
+Allow: /
+
+User-Agent: Gemini-Deep-Research
+Allow: /
+
+User-Agent: GoogleAgent-Mariner
+Allow: /
+
+User-Agent: Google-NotebookLM
+Allow: /
+
+User-Agent: BingBot
+Allow: /
+
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: Perplexity-User
+Allow: /
+
+User-Agent: FacebookBot
+Allow: /
+
+User-Agent: meta-externalagent
+Allow: /
+
+User-Agent: XAI-Bot
+Allow: /
+
+User-Agent: DeepSeekBot
+Allow: /
+
+User-Agent: YouBot
+Allow: /
+
+User-Agent: DuckAssistBot
+Allow: /
+
+User-Agent: Applebot
+Allow: /
+
+User-Agent: Applebot-Extended
+Allow: /
+
+User-Agent: Amazonbot
+Allow: /
+
+User-Agent: Bytespider
+Allow: /
+
+User-Agent: CCBot
+Allow: /
+
+User-Agent: Diffbot
+Allow: /
+
+User-Agent: cohere-ai
+Allow: /
+
+User-Agent: cohere-training-data-crawler
+Allow: /
+
+User-Agent: ExaBot
+Allow: /
+
+User-Agent: Cloudflare-AutoRAG
+Allow: /
+
+User-Agent: FirecrawlAgent
+Allow: /
+
+User-Agent: Crawl4AI
+Allow: /
+
+Sitemap: https://www.advetbuildwell.com/sitemap.xml
